@@ -3,40 +3,52 @@ require 'securerandom'
 
 module Grape
   module RedisSessions
+    # Class to handler the connection with the redis server
     class RedisConnection
+      AUTHDOMAIN = 'auth'
+
       class << self
+        # Create a singleton object to handle the connection
         def connect(configuration)
           unless @redis_sessions
-            @redis_sessions = RedisSessions.new(configuration)
+            @redis_sessions = RedisConnection.new(configuration)
           end
           @redis_sessions
         end
 
+        # Reset the singleton object
         def reset
           @redis_sessions = nil
         end
       end
       
+      # Create a connection with the Redis Server
       def initialize(configuration)
-        @redis = Redis.new(url: configuration.endpoint)
-        @session_lifetime = configuration.session_lifetime.to_i
+        @redis = Redis.new(url: configuration.redis_endpoint)
+        @access_token_lifetime = configuration.access_token_lifetime
       end
 
-      def store_session(session_id, user_id)
-        @redis.set(session_id, user_id)
-        @redis.expire(session_id, @session_lifetime)
+      # Store the access_token binded to an user_id
+      def store_access_token(access_token_id, user_id)
+        @redis.set(auth_domain_key(access_token_id), user_id)
+        @redis.expire(auth_domain_key(access_token_id), @access_token_lifetime)
       end
 
-      def delete_session(session_id)
-        @redis.del(session_id)
+      # Delete the access token
+      def delete_access_token(access_token_id)
+        @redis.del(auth_domain_key(access_token_id))
       end
 
-      def user_id_from_session_id(session_id)
-        @redis.get(session_id)
+      # Retrieve user_id that is binded to the access token
+      def user_id_from_access_token_id(access_token_id)
+        @redis.get(auth_domain_key(access_token_id))
       end
 
-      def sessions_server_alive?
-        @redis.ping
+      private
+
+      # Create a domain for the keys stored
+      def auth_domain_key(key)
+        [AUTHDOMAIN, key].join('.')
       end
     end
   end
