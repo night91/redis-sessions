@@ -1,7 +1,7 @@
 # coding: utf-8
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "redis-sessions/version"
+require "redis_sessions/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "redis-sessions"
@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Eddy Roberto Morales Perez"]
   spec.email         = ["eddyr.morales@gmail.com"]
 
-  spec.summary       = "Simple gem to handle redis sessions"
-  spec.description   = "Simple gem to handle redis sessions in grape api"
+  spec.summary       = "Ssession based on access token for Grape using a Redis server as datastore"
+  spec.description   = "Simple gem to provide session based on access token for Grape using a Redis server as datastore"
   spec.homepage      = "https://github.com/night91/redis-sessions"
   spec.license       = "MIT"
   

@@ -5,15 +5,12 @@ module Grape
   module RedisSessions
     # Class to handler the connection with the redis server
     class RedisConnection
-      AUTHDOMAIN = 'auth'
+      AUTHDOMAIN = 'auth'.freeze
 
       class << self
         # Create a singleton object to handle the connection
         def connect(configuration)
-          unless @redis_sessions
-            @redis_sessions = RedisConnection.new(configuration)
-          end
-          @redis_sessions
+          @redis_sessions ||= RedisConnection.new(configuration)
         end
 
         # Reset the singleton object
@@ -21,7 +18,7 @@ module Grape
           @redis_sessions = nil
         end
       end
-      
+
       # Create a connection with the Redis Server
       def initialize(configuration)
         @redis = Redis.new(url: configuration.redis_endpoint)

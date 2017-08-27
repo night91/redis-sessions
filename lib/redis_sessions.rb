@@ -1,4 +1,4 @@
-require 'redis-sessions/version'
+require 'redis_sessions/version'
 
 require_relative 'configuration'
 require_relative 'redis_connection'
@@ -7,7 +7,7 @@ require_relative 'authentication_helper'
 module Grape
   # Handle sessions with Redis store for Grape
   module RedisSessions
-  	class << self
+    class << self
       # Access the configuration
       def config
         @config ||= Grape::RedisSessions::Configuration.new

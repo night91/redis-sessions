@@ -1,0 +1,24 @@
+# This is the configuration used to check the rubocop source code.
+
+Style/IfUnlessModifier:
+  MaxLineLength: 110
+Style/SpaceBeforeFirstArg:
+  Enabled: false
+Style/ClosingParenthesisIndentation:
+  Enabled: false
+Style/WhileUntilModifier:
+  MaxLineLength: 110
+Metrics/LineLength:
+  Max: 110
+Metrics/MethodLength:
+  Max: 25
+Metrics/AbcSize:
+  Max: 30
+Metrics/LineLength:
+  Max: 110
+# NOTE: As of 2016-01-29, the default style here is only_raise, because of recent changes in
+#       the Ruby Style Guide (https://github.com/bbatsov/ruby-style-guide#prefer-raise-over-fail).
+#       We should discuss if we are going to refactor in order to comply with the guide. In the mean
+#       time, I'm changing our style to the old behavior.
+Style/SignalException:
+  EnforcedStyle: semantic

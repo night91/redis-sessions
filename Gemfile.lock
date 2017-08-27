@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    redis-sessions (1.0.0)
+    redis-sessions (0.1.0)
       grape (~> 1.0)
       redis (~> 3.2)
 

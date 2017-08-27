@@ -1,0 +1,7 @@
+{
+"load": [
+    ".arcanist-extensions/minitest_test_engine"
+  ],
+ "history.immutable" : true  ,
+ "unit.engine" : "MiniTestTestEngine"
+}

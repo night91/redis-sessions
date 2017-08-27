@@ -1,0 +1,16 @@
+{
+  "linters": {
+    "Ruby Rubocop": {
+      "type": "rubocop",
+      "include": "(\\.rb$)"
+    },
+     "Ruby ": {
+      "type": "ruby",
+      "include": "(\\.rb$)"
+    },
+      "Javascript ": {
+      "type": "jshint",
+      "include": "(\\.js$)"
+    }
+}
+}
