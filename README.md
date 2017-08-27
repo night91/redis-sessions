@@ -50,6 +50,11 @@ module Grape
           error!('401 Unauthorized', 401) unless current_user_id
         end
 
+        # Check the user is autehnticated or not
+        def is_authenticated?
+          !current_user_id.nil?
+        end
+
         # Create an access token binded to a user_id
         def create_session(user_id)
           access_token_id = generate_random_access_token
