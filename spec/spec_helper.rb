@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "simple-redis-sessions"
+require "redis-sessions"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
